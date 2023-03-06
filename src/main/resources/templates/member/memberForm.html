@@ -10,6 +10,8 @@
             color: #bd2130;
         }
 
+
+
 	</style>
 </th:block>
 
@@ -24,13 +26,15 @@
             }
         });
 
+
+
 	</script>
 
 </th:block>
 
 <div layout:fragment = "content">
 
-	<form action = "/members/new" method = "post" role = "form" th:object = "${memberFormDto}">
+	<form action = "/members/new" method = "post" role = "form" th:object = "${memberDto}">
 		<div class = "form-group">
 			<label th:for = "name">이름</label>
 			<input class = "form-control" placeholder = "이름을 입력해주세요" th:field = "*{name}" type = "text">
@@ -47,16 +51,11 @@
 			<p class = "fieldError" th:errors = "*{password}" th:if = "${#fields.hasErrors('password')}">Incorrect
 				data</p>
 		</div>
-		<div class = "form-group">
-			<label th:for = "address">주소</label>
-			<input class = "form-control" placeholder = "주소를 입력해주세요" th:field = "*{address}" type = "text">
-			<p class = "fieldError" th:errors = "*{address}" th:if = "${#fields.hasErrors('address')}">Incorrect
-				data</p>
-		</div>
+
 		<div style = "text-align: center">
 			<button class = "btn btn-primary" style = "" type = "submit">Submit</button>
 		</div>
-		<input th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}" type = "hidden">
+		<!--<input th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}" type = "hidden">-->
 	</form>
 
 </div>

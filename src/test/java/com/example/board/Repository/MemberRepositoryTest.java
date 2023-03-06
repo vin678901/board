@@ -10,13 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 
 @SpringBootTest
+@Transactional
 class MemberRepositoryTest {
 
     @Autowired
     MemberRepository memberRepository;
 
     @Test
-    @Transactional
     public void saveMemberTest() {
 
         MemberDto memberDto = new MemberDto();
@@ -45,5 +45,6 @@ class MemberRepositoryTest {
         Assertions.assertThat(memberDto.getPassword()).isEqualTo(savedMember.getPassword());
 
     }
+
 
 }
