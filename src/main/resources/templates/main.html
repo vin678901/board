@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html layout:decorate = "~{layouts/layout1}"
-	  xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+<html layout:decorate="~{layouts/layout1}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
 >
 
-<div layout:fragment = "content">
+<div layout:fragment="content">
 
-	<h1>메인페이지입니다.</h1>
+    <div>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>게시글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>최종수정일</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            <tr>
+                <td th:text="${"></td>
+                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <h1>메인페이지입니다.</h1>
 
 </div>
 </html>

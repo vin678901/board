@@ -1,6 +1,7 @@
 package com.example.board.service;
 
 import com.example.board.Repository.PostsRepository;
+import com.example.board.dto.PostsDto;
 import com.example.board.entity.Posts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
