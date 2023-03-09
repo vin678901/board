@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout1}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div layout:fragment="content">
+
+    <div>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>제목</th>
+                <th>내용 :</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            <tr th:each="posts : ${posts}">
+                <td><a th:href="@{/posts/{id}(id=${posts.id})}" th:text="${posts.title}"></a></td>
+                <td th:text="${posts.content}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h2 th:text="${posts.title}"></h2>
+        <p th:text="${posts.content}"></p>
+        <p>작성자: <span th:text="${posts.author}"></span></p>
+    </div>
+
+</div>
+
+</html>
