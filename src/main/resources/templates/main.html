@@ -18,16 +18,17 @@
             </thead>
             <tbody id="tbody">
 
-            <tr>
-                <td th:text="${"></td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td></td>
-                <td></td>
+            <tr th:each="posts : ${postsList}">
+                <td th:text="${posts.id}"></td>
+                <td><a th:href="@{/posts/{id}(id=${posts.id})}" th:text="${posts.title}"></a></td>
+                <td th:text="${posts.content}"></td>
+                <td th:text="${posts.modifiedDate}"></td>
             </tr>
 
             </tbody>
         </table>
     </div>
+
 
     <h1>메인페이지입니다.</h1>
 
