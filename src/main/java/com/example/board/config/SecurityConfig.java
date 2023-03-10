@@ -33,12 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ("/members/logout"))//로그아웃 url
                 .logoutSuccessUrl("/");
 
+        http.authorizeRequests()
+                .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                .mvcMatchers("/", "/members/**").permitAll()
+                .mvcMatchers("/admin/**", "/posts/delete/**", "/posts/update/**").hasRole("ADMIN")
+                .anyRequest().authenticated();
 
-//        http.authorizeRequests()
-//                .mvcMatchers("/css/**", "/js/**").permitAll()
-//                .mvcMatchers("/", "/members/**", "/posts/**").permitAll()
-//                .anyRequest().authenticated()
-//        ;
     }
 
     @Bean
