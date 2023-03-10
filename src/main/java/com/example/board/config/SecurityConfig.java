@@ -4,6 +4,7 @@ import com.example.board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,6 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ("/members/logout"))//로그아웃 url
                 .logoutSuccessUrl("/");
 
+
+//        http.authorizeRequests()
+//                .mvcMatchers("/css/**", "/js/**").permitAll()
+//                .mvcMatchers("/", "/members/**", "/posts/**").permitAll()
+//                .anyRequest().authenticated()
+//        ;
     }
 
     @Bean
@@ -43,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-    }//스프링 시큐리티에서 인증은 AuthenticationManager를 통해 이루어지며 AuthenticationManagerBBuilder가
-    //AuthenticationManager를 생성한다.
+
+
+    }
 }
+//스프링 시큐리티에서 인증은 AuthenticationManager를 통해 이루어지며 AuthenticationManagerBBuilder가
+//AuthenticationManager를 생성한다.
+

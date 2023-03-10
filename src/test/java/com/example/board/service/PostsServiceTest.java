@@ -1,5 +1,6 @@
 package com.example.board.service;
 
+import com.example.board.Repository.PostsRepository;
 import com.example.board.dto.MemberDto;
 import com.example.board.dto.PostsDto;
 import com.example.board.entity.Member;
@@ -10,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.transaction.Transactional;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +27,18 @@ class PostsServiceTest {
     PasswordEncoder passwordEncoder;
 
     @Autowired
+    PostsRepository postsRepository;
+
+    @Autowired
     MemberService memberService;
+
+    public Posts createPosts() {
+        PostsDto postsDto = new PostsDto();
+        postsDto.setTitle("testTitle");
+        postsDto.setContent("testContent");
+        postsDto.setAuthor("testAuthor");
+        return Posts.createPosts(postsDto);
+    }
 
     public Member createMember() {
         MemberDto memberDto = new MemberDto();
@@ -76,5 +90,18 @@ class PostsServiceTest {
         System.out.println(posts.getModifiedDate());
         System.out.println(posts.getModifiedDate());
         System.out.println(posts.getModifiedDate());
+    }
+
+    @Test
+    @Transactional
+    public void deleteTest() {
+        Posts posts = createPosts();
+        postsService.savePosts(posts);
+
+        postsService.deletePost(posts.getId());
+        Optional<Posts> deletedPosts = postsRepository.findById(posts.getId());
+
+        assertFalse(deletedPosts.isPresent());
+
     }
 }

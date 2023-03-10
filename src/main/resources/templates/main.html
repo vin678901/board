@@ -13,7 +13,9 @@
                 <th>게시글번호</th>
                 <th>제목</th>
                 <th>작성자</th>
-                <th>최종수정일</th>
+                <th>수정일</th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
             </thead>
             <tbody id="tbody">
@@ -21,8 +23,15 @@
             <tr th:each="posts : ${postsList}">
                 <td th:text="${posts.id}"></td>
                 <td><a th:href="@{/posts/{id}(id=${posts.id})}" th:text="${posts.title}"></a></td>
-                <td th:text="${posts.content}"></td>
+                <td th:text="${posts.author}"></td>
                 <td th:text="${posts.modifiedDate}"></td>
+                <td>
+                    <a th:href="@{/posts/update/{id}(id=${posts.id})}">수정하기</a>
+                </td>
+                <td>
+                    <!--                    <a th:href="@{/posts/delete/{id}(id=${posts.id})}">글 삭제</a>-->
+                    <a th:href="@{/posts/delete(id=${posts.id})}">글삭제</a>
+                </td>
             </tr>
 
             </tbody>
